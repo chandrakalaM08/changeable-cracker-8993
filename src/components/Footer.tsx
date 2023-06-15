@@ -9,6 +9,7 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
+import logo from "../assets/logo.jpg"
 
 
 const ListHeader = ({ children }: { children: ReactNode }) => {
@@ -30,7 +31,7 @@ export default function Footer() {
                     spacing={8}>
                     <Stack spacing={6}>
                         <Box>
-                            <Text color={useColorModeValue('gray.700', 'white')} >Clothy.</Text>
+                               <img src={logo} alt='logo' width={150} style={{marginTop:"-15px"}} />
                             <Text align={'left'}>Discover our wide range of stylish clothing for men, women, and kids. From casual wear to formal attire, we have it all. With fast shipping and hassle-free returns, Clothy ensures a seamless online shopping experience. Stay fashionable with Clothy today!</Text>
                         </Box>
                       
