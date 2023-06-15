@@ -7,25 +7,26 @@ import PaymentPage from "../pages/PaymentPage"
 import SingleProductPage from '../pages/SingleProductPage'
 import PageNotFound from "../pages/PageNotFound"
 import PrivateRoute from './PrivateRoute'
+import LoginPage from '../pages/LoginPage'
 
 const AllRoutes = () => {
     return (
         <div>
             <Routes>
-                <Route to="/" element={<HomePage />}></Route>
-                <Route to="/login" element={<SimpleCard />}></Route>
-                <Route to="/products" element={<ProductsPage />}></Route>
-                <Route to="/cart" element={
+                <Route path="/" element={<HomePage />}></Route>
+                <Route path="/login" element={<LoginPage />}></Route >
+                <Route path="/products" element={<ProductsPage />}></Route>
+                <Route path="/cart" element={
                     <PrivateRoute>
                         <CartPage />
                     </PrivateRoute>
                 }></Route>
-                <Route to="/payment" element={
+                <Route path="/payment" element={
                     <PrivateRoute>
                         <PaymentPage />
                     </PrivateRoute>}></Route>
-                <Route to="/products/:id" element={<SingleProductPage />}></Route>
-                <Route to="*" element={<PageNotFound />}></Route>
+                <Route path="/products/:id" element={<SingleProductPage />}></Route>
+                <Route path="*" element={<PageNotFound />}></Route>
             </Routes>
         </div>
     )
