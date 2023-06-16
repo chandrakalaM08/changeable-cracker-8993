@@ -16,3 +16,14 @@ export const getCustomers = () => {
 export const getComments = () => {
   return fetch("https://dummyjson.com/comments").then((res) => res.json());
 };
+
+
+export const getProducts = ()=>{
+  return fetch ("http://localhost:8080/products").then((res)=>res.json())
+
+  
+  
+}
+
+// const res: AxiosResponse = await axios.get(`${url}`);
+// console.log(res)

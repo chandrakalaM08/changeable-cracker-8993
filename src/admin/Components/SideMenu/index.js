@@ -35,8 +35,8 @@ function SideMenu() {
             key: "/",
           },
           {
-            label: "Inventory",
-            key: "/inventory",
+            label: "Products",
+            key: "/products",
             icon: <ShopOutlined />,
           },
           {

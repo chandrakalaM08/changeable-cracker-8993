@@ -1,0 +1,101 @@
+/* Products Container */
+.products-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+  }
+  
+  /* Product Card */
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Product Image */
+  .product-image {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  /* Product Title */
+  .product-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Product Description */
+  .product-description {
+    margin-bottom: 10px;
+  }
+  
+  /* Product Price */
+  .product-price {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Product Category */
+  .product-category {
+    font-style: italic;
+    color: #888;
+    margin-bottom: 5px;
+  }
+  
+  /* Product Gender */
+  .product-gender {
+    font-style: italic;
+    color: #888;
+    margin-bottom: 5px;
+  }
+  
+  /* Product Sizes */
+  .product-sizes {
+    margin-bottom: 5px;
+  }
+  
+  /* Product Brand */
+  .product-brand {
+    margin-bottom: 5px;
+  }
+  
+  /* Product Color */
+  .product-color {
+    margin-bottom: 5px;
+  }
+  
+  /* Product Discount */
+  .product-discount {
+    font-weight: bold;
+    color: red;
+    margin-bottom: 5px;
+  }
+  
+  /* Product Discounted Price */
+  .product-off-price {
+    text-decoration: line-through;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  
+  /* Product Rating */
+  .product-rating {
+    color: #888;
+    margin-bottom: 5px;
+  }
+  
+  /* Product Count */
+  .product-count {
+    color: #888;
+    margin-bottom: 10px;
+  }
+  
