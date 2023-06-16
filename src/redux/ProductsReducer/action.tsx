@@ -27,13 +27,15 @@ export const postProduct = (newProduct :any) => (dispatch:any) => {
 };
 
 // get request
-export const getProducts = (paramObj:any) => (dispatch: any) =>{
+export const getProducts = (paramObj:any,page:number) => (dispatch: any) =>{
   dispatch({ type: PRODUCT_REQUEST });
 
   axios
-    .get("https://vast-red-fawn-cuff.cyclic.app/products", paramObj)
+    .get(`https://vast-red-fawn-cuff.cyclic.app/products/?_page=${page}&_limit=15`, paramObj)
     .then((res) => {
-      dispatch({ type: PRODUCT_GET_SUCCESS, payload: res.data });
+      dispatch({ type: PRODUCT_GET_SUCCESS, payload: res.data })
+      const totalCount = res.headers['x-total-count'];
+      console.log(totalCount)
     })
     .catch((err) => dispatch({ type: PRODUCT_FAILURE }));
 };

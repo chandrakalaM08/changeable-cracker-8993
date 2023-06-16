@@ -12,7 +12,6 @@ import {
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
   Container,
 } from '@chakra-ui/react';
@@ -23,14 +22,25 @@ import {
   ChevronRightIcon,
 } from '@chakra-ui/icons';
 
+import { useNavigate} from "react-router-dom"
 import { AiFillHeart, AiOutlineSearch, AiOutlineShoppingCart } from "react-icons/ai";
 import logo from "../assets/logo.jpg"
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
 
-  return (
-    <Container w={'15xl'}>
+    const navigate = useNavigate()
+
+  const handleLogoClick = () => {
+    navigate("/")
+  };
+
+  return (<div style={{background:"white"}}>
+    <Container w={'full'} style={{ position: "fixed",
+    zIndex: "5",
+      width: "80%",
+    background:"white"}}>
+       
       <Flex
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
@@ -43,6 +53,7 @@ export default function Navbar() {
         align={'center'}
          >
         <Flex
+          background={"white"}
           flex={{ base: 1, md: 'auto' }}
           ml={{ base: -2 }}
           display={{ base: 'flex', md: 'none' }}>
@@ -56,82 +67,63 @@ export default function Navbar() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'center' }}>
-           {/* <Text
-            textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-            fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}>
-           <span color='yellow.400'>Clo</span><span color='black'>thy.</span>
-          </Text> */}
-                  <img src={logo} alt='logo' width={130} style={{marginTop:"-15px"}} />
-            
-          <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
+         <img src={logo} alt='logo' width={110} style={{marginTop:"-15px"}} onClick={handleLogoClick} />
+          <Flex display={{ base: 'none', md: 'flex' }} ml={10} w={"100%"}>
             <DesktopNav />
-          </Flex>
-        </Flex>
-
-        <Stack
+            <Stack
           flex={{ base: 1, md: 0 }}
           justify={'flex-end'}
           direction={'row'}
-        spacing={6}>
-    
-            <Button
-            as={'a'}
-            fontSize={'md'}
-            fontWeight={400}
-            variant={'link'}
-            href={'#'}>
-            <AiOutlineSearch/>
-            </Button>
-            <Button
-            as={'a'}
-            fontSize={'md'}
-            fontWeight={400}
-            variant={'link'}
-            href={'#'}>
-            <AiFillHeart color='red'/>
-          </Button>
-          <Button
-            as={'a'}
-            fontSize={'md'}
-            fontWeight={400}
-            variant={'link'}
-            href={'#'}>
-            Cart <AiOutlineShoppingCart/>
-          </Button>
-           <Button
-            as={'a'}
-            display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'md'}
-            fontWeight={600}
-            color={'white'}
-            bg={'orange.300'}
-            href={'#'}
-            _hover={{
-              bg: 'pink.200',
-            }}>
-            Sign In
-          </Button> 
+          spacing={6}
+     >
+              
+          
         </Stack>
+          </Flex>
+        </Flex>
+
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />
       </Collapse>
     </Container>
+    </div>
   );
 }
 
 const DesktopNav = () => {
+
+  const navigate = useNavigate()
+
+  const handleCartClick = () => {
+    navigate("/cart")
+  };
+
+   const handleLoginClick = () => {
+    navigate("/login")
+  };
+  
   const linkColor = useColorModeValue('gray.600', 'gray.200');
   const linkHoverColor = useColorModeValue('orange.400', 'white');
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
     return (
-      <Flex align={'start'}>
-    <Stack direction={'row'} spacing={4}>
+      <Flex align={'start'} style={{background : "white" , width:"full"}}>
+        <Stack direction={'row'} spacing={4} width={"150%"} height={10}>
+            <input type='text' width={250} height={60} style={{border:"1px solid gray.100"}}/>
+
+            <Button
+            as={'a'}
+            fontSize={'xl'}
+            fontWeight={400}
+            variant={'link'}
+                href={'#'}
+              >
+            <AiOutlineSearch/>
+            </Button>
       {NAV_ITEMS.map((navItem) => (
-        <Box key={navItem.label}>
+        <Box key={navItem.label} style={{background : "white"}}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
               <Link
@@ -168,6 +160,36 @@ const DesktopNav = () => {
           </Popover>
         </Box>
       ))}
+            <Button
+            as={'a'}
+            fontSize={'md'}
+            fontWeight={400}
+            variant={'link'}
+            href={'#'}>
+            <AiFillHeart color='red'/>
+          </Button>
+  
+          <Button
+            fontSize={'md'}
+            fontWeight={400}
+            variant={'link'}
+          onClick={handleCartClick}>
+              Cart <AiOutlineShoppingCart />      
+            </Button>
+          <Button
+            onClick={handleLoginClick}
+            as={'a'}
+            display={{ base: 'none', md: 'inline-flex' }}
+            fontSize={'md'}
+            fontWeight={600}
+            color={'white'}
+            bg={'orange.300'}
+            href={'#'}
+            _hover={{
+              bg: 'pink.200',
+            }}>
+            Sign In
+          </Button> 
         </Stack>
     </Flex>
   );
@@ -182,7 +204,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
       p={2}
       rounded={'md'}
       _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
-      <Stack direction={'row'} justify={'center'}>
+      <Stack direction={'row'} justify={'center'} style={{background:"white"}}>
         <Box>
           <Text
             transition={'all .3s ease'}
