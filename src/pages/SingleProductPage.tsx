@@ -1,61 +1,83 @@
 import { Box, Button, Flex, Grid, Image, Stack, Text, useToast } from '@chakra-ui/react'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-// import { getlocalSt } from '../utils/localStorage';
-// import Footer from '../components/Footer';
 import { useParams } from 'react-router-dom';
 
+interface Product {
+  categories: string,
+  description: string,
+  images: {
+    "image1": string,
+                "image2": string,
+                "image3":string,
+                "image4":string
+  },
+  price: number,
+  title: string,
+  id: string,
+  rating: number,
+  sizes:string[],
+  off_price:number,
+  discount_percentage:number,
+  brand:string,
+  count:number
+}
+
 const SingleProductPage = () => {
+  const {id}=useParams()
+  console.log(id);
+  const [product, setProduct] = useState<Product | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string>("");
+  const toast = useToast();
 
-    // const [singleProduct, setSingleProduct] = useState({});
-    // const [poster, setPoster] = useState("");
-    // const toast = useToast();
-  
-    // const { id } = useParams();
+  const fetchProduct = async () => {
+    try {
+      const response = await axios.get(`https://vast-red-fawn-cuff.cyclic.app/products/${id}`);
+      const firstProduct = response.data;
+      setProduct(firstProduct);
+      // setSizes(firstProduct.sizes);
+    } catch (error) {
+      console.log(error);
+    }
     
+  };
 
-  
+  useEffect(() => {
+    fetchProduct();
+  }, [id]);
 
-    // useEffect(()=>{
-    //   axios.get(`https://vast-red-fawn-cuff.cyclic.app/products/search/${id}`,{
-    //     })
-    //     .then((res)=>{
-    //       console.log(res.data)
-    //         setSingleProduct(res.data)
-    //         setPoster(res?.data.images[0])
-    //     })
-    //     .catch((err)=>{
-    //         console.log(err)
-    //     })
-    // },[])
+  const handleSizeSelection = (size: string) => {
+    setSelectedSize(size);
+  };
 
-    // console.log(singleProduct,id)
+  const handleAddToCart = () => {
+    if (selectedSize) {
+      // Perform the add to cart logic
+      const cartItem = {
+        id: product?.id,
+        title: product?.title,
+        size: selectedSize,
+      };
+      console.log('Adding to cart:', cartItem);
 
-    // const { title,brand, category, discount,rating, size,strike_price,rating_count} = singleProduct
-
-    // const AddtoBag =  () => {
-    //   let obj = {title,brand, category, discount,rating, size,strike_price,image:poster}
-    //      axios
-    //       .post(`https://vast-red-fawn-cuff.cyclic.app/cart/add`, obj ,{
-    //       })
-    //       .then((res) => {
-    //         toast({
-    //           title: 'Successfully Added.',
-    //           description: "This product has been added to your cart.",
-    //           status: 'success',
-    //           duration:1500,
-    //           isClosable: true,
-    //         });
-    //         // dispatch(());
-    //       })
-    //       .catch((err) => toast({
-    //         title: 'Already Exist.',
-    //         description: "This product already exist in your cart.",
-    //         status: 'error',
-    //         duration:1500,
-    //         isClosable: true,
-    //       }));
-    //   };
+      // Display a toast notification
+      toast({
+        title: 'Successfully Added',
+        description: 'This product has been added to your cart.',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: 'Size not selected',
+        description: 'Please select a size before adding to cart.',
+        status: 'warning',
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
   
   return (
     <div style={{ width: "100%", border: "0px solid red", margin: "auto" }}>
@@ -92,8 +114,7 @@ const SingleProductPage = () => {
             border={"0px solid red"}
           >
             <Image
-              // src=
-              // {poster}
+              src={product?.images.image2}
               borderRadius={20}
               m={"auto"}
               w={"100%"}
@@ -120,22 +141,27 @@ const SingleProductPage = () => {
               color={"gray.500"}
               noOfLines={{ base: 1, sm: 1 }}
             >
-              {/* {title} */}
+              {product?.title}
             </Text>
 
             <Flex alignItems={"baseline"}>
-             
+            <Text
+                  display={"inline-block"}
+                  fontWeight={700}
+                >
+                  {product?.price}
+                </Text>
               <Text pl={"1.2rem"} fontSize={"0.9rem"}>
                 MRP{" "}
                 <Text
                   display={"inline-block"}
                   textDecoration={"line-through"}
                 >
-                  {/* {strike_price} */}
+                  {"₹"}{product?.off_price}
                 </Text>
               </Text>
               <Text pl={"1.2rem"} fontWeight={700} color={"tomato"}>
-                {/* {discount} */}
+                {product?.discount_percentage}{"%"} 
               </Text>
             </Flex>
 
@@ -161,18 +187,21 @@ const SingleProductPage = () => {
                 }}
                 gap={"0.5rem"}
               >
-                {/* {size?.map((sz, i) => ( */}
+                {product?.sizes.map((size, index) => (
                   <Button
-                    // key={i}
-                    backgroundColor={"#fff"}
-                    border={"1px solid gray"}
-                    borderRadius={"50%"}
-                    p={"1.5rem"}
-                    // style={i?{backgroundColor:"pink.500",color:"white"}:{backgroundColor:"white",color:"black"}}
+                    key={index}
+                    backgroundColor={
+                      selectedSize === size ? 'pink.500' : '#fff'
+                    }
+                    color={selectedSize === size ? '#fff' : 'black'}
+                    border={'1px solid gray'}
+                    borderRadius={'50%'}
+                    p={'1.5rem'}
+                    onClick={() => handleSizeSelection(size)}
                   >
-                    {/* {sz} */}
+                    {size}
                   </Button>
-                {/* ))} */}
+                ))}
               </Grid>
             </Box>
 
@@ -189,7 +218,7 @@ const SingleProductPage = () => {
               >
                 <Text color={"gray.600"} display={"inline-block"}>
                   Category : <span style={{color:"gray"}} >
-                    {/* {category} */}
+                    {product?.categories}
                     </span>
                   </Text>
               </Flex>
@@ -197,7 +226,8 @@ const SingleProductPage = () => {
               >
                 <Text color={"gray.600"} display={"inline-block"}>
                   Brand : <span style={{color:"gray"}} >
-                    {/* {brand} */}
+                    {product?.brand}
+                    
                     </span>
                 </Text>
               </Flex>
@@ -206,7 +236,7 @@ const SingleProductPage = () => {
               >
                  <Text color={"gray.600"} display={"inline-block"}>
                   Description : <span style={{color:"gray"}} >
-                    {/* {title} */}
+                    {product?.description}
                     </span>
                   </Text>
               </Flex>
@@ -214,7 +244,7 @@ const SingleProductPage = () => {
               >
                  <Text color={"gray.600"} display={"inline-block"}>
                   Rating : <span style={{color:"gray"}} >
-                    {/* {rating} */}
+                    {product?.rating}
                     </span>
                   </Text>
               </Flex>
@@ -222,7 +252,7 @@ const SingleProductPage = () => {
               >
             <Text color={"gray.600"} display={"inline-block"}>
                   Review : <span style={{color:"gray"}} >
-                    {/* {rating_count} */}
+                    {product?.count}
                   </span>
                   </Text>
               </Flex>
@@ -259,7 +289,7 @@ const SingleProductPage = () => {
                   borderRadius={"0.2rem"}
                   color={"#fff"}
                   backgroundColor={"pink.500"}
-                  // onClick={AddtoBag}
+                  onClick={handleAddToCart}
                   fontSize={"1.2rem"}
                   fontWeight={700}
                   //border={'2px solid gray'}
