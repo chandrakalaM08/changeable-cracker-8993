@@ -28,6 +28,7 @@ const SingleProductPage = () => {
   console.log(id);
   const [product, setProduct] = useState<Product | null>(null);
   const [selectedSize, setSelectedSize] = useState<string>("");
+  const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const toast = useToast();
 
   const fetchProduct = async () => {
@@ -114,11 +115,13 @@ const SingleProductPage = () => {
             border={"0px solid red"}
           >
             <Image
-              src={product?.images.image2}
+              src={hoveredImage || product?.images.image2}
               borderRadius={20}
               m={"auto"}
               w={"100%"}
               p={"0.5rem"}
+              onMouseEnter={() => product && product.images && setHoveredImage(product.images.image1)}
+              onMouseLeave={() => setHoveredImage(null)}
             />
           </Box>
 

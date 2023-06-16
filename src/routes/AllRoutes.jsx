@@ -6,7 +6,7 @@ import CartPage from '../pages/CartPage'
 import PaymentPage from "../pages/PaymentPage"
 import SingleProductPage from '../pages/SingleProductPage'
 import PageNotFound from "../pages/PageNotFound"
-import PrivateRoute from './PrivateRoute'
+// import PrivateRoute from './PrivateRoute'
 import LoginPage from '../pages/LoginPage'
 
 const AllRoutes = () => {
@@ -16,15 +16,13 @@ const AllRoutes = () => {
                 <Route path="/" element={<HomePage />}></Route>
                 <Route path="/login" element={<LoginPage />}></Route >
                 <Route path="/products" element={<ProductsPage />}></Route>
-                <Route path="/cart" element={
-                    <PrivateRoute>
-                        <CartPage />
-                    </PrivateRoute>
-                }></Route>
+                <Route path="/cart" element={ <CartPage />  }></Route>
                 <Route path="/payment" element={
-                    <PrivateRoute>
+                    // <PrivateRoute>
                         <PaymentPage />
-                    </PrivateRoute>}></Route>
+                    // </PrivateRoute>
+                }
+                    ></Route>
                 <Route path="/products/:id" element={<SingleProductPage />}></Route>
                 <Route path="*" element={<PageNotFound />}></Route>
             </Routes>
