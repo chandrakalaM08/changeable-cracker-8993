@@ -30,7 +30,7 @@ const SingleProductPage = () => {
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const toast = useToast();
-
+  
   const fetchProduct = async () => {
     try {
       const response = await axios.get(`https://vast-red-fawn-cuff.cyclic.app/products/${id}`);
