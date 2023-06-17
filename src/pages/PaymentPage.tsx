@@ -37,10 +37,20 @@ const PaymentPage = () => {
   const [carddata, setCarddata] = useState([]);
   const [status, setStatus] = useState(false);
   const [upi, setUpi] = useState<string | null>(null);
-  const { price } = useContext(AuthContext);
-
+  const [bill, setBill] = useState(0);
   // const { isOpen, onOpen, onClose } = useDisclosure();
 
+ function postorders(){
+  
+  }
+
+  useEffect(() => {
+    let storedBill = +(localStorage.getItem("total_bill") || 0);
+    console.log(storedBill,typeof storedBill)
+    let items=storedBill+(storedBill*0.12)
+    // const items = storedBill ? JSON.parse(storedBill) ;
+    setBill(items);
+  }, []);
 
 
 
@@ -101,6 +111,8 @@ const PaymentPage = () => {
     }, 4000);
   }
 
+ 
+
   return (
     <Flex
       mt="100px"
@@ -121,7 +133,7 @@ const PaymentPage = () => {
       <Box w="50%" m="30px">
         <Box>
           <Heading as="h2" size="lg" mb="10px" color="#e6378c">
-            Total Amount : {price}
+            Total Amount : {bill}
           </Heading>
         </Box>
         <form onSubmit={handleSubmitForm}>
@@ -197,7 +209,8 @@ const PaymentPage = () => {
                     </Flex>
                   </ModalBody>
                   <ModalFooter>
-                    <Button colorScheme="blue" mr={3} onClick={onClose}>
+                    <Button colorScheme="blue" mr={3} onClick={()=>{onClose()
+                       navigate("/checkout")}}>
                       Close
                     </Button>
                   </ModalFooter>
@@ -206,7 +219,9 @@ const PaymentPage = () => {
             ) : (
               <Button
                 color="white"
-                onClick={onOpen}
+                onClick={()=>{onOpen()
+                postorders()}}
+
                 type="submit"
                 bg="#e6378c"
                 _hover={{

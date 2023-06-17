@@ -42,10 +42,7 @@ const Cart = () => {
     )
   };
   
-  const updatePaymentInfo = () => {
-    localStorage.setItem("total_bill", JSON.stringify(total))
-  }
-
+  
 useEffect(()=>{
    let updatedData = orderDataNew.map((element, index) => {
      element.quantity = quantity[element.id];
@@ -107,7 +104,7 @@ useEffect(()=>{
                       <Flex gridGap={3} mb={4} key={item.id}>
                 <Box flex="0 0 96px">
                   <Image
-                    src={item.picture}
+                    src={item.images}
                     alt="Product Image"
                     borderRadius="md"
                     boxShadow="sm"
@@ -116,7 +113,7 @@ useEffect(()=>{
                 </Box>
                 <Box flex="1">
                   <Text as="a" href="#" color="blue.500" fontWeight="bold" fontSize="lg">
-                    {item.name}
+                    {item.title}
                   </Text>
                   <Text color="gray.500" mt={1}>
                     {item.category}
@@ -124,7 +121,7 @@ useEffect(()=>{
                 </Box>
                 <Flex flexDirection={{ base: "row", lg: "column", xl: "row" }} alignItems="center">
                   <Box>
-                        <QuantityButton quantity={item.quantity} id={item.id} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} total={ total} />
+                        <QuantityButton quantity={item.quantity} id={item.id} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} total={total} />
                   </Box>
                   <Box>
                     <Text as="h6" fontSize="md" fontWeight="bold">

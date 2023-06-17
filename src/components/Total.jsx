@@ -6,6 +6,7 @@ export default function Total({total}) {
   const navigate = useNavigate()
   
   function handlePurchase() {
+ localStorage.setItem("total_bill", JSON.stringify(total))
     navigate("/payment")
   }
 
@@ -62,7 +63,7 @@ return (
                   </Text>
                   <Flex alignItems="center" mt={1}>
                     <input type="text" className="form-control border" name="" placeholder="Coupon code"  onChange={(e)=>{setDiscount(e.target.value)}}/>
-                    <Button variant="solid" ml={2} bg={"rgb(252, 198, 3)"} onClick={handleApplyDiscount} >
+                    <Button variant="solid" ml={2} bg={"pink.400"} onClick={handleApplyDiscount} >
                       Apply
                     </Button>
                   </Flex>
@@ -80,16 +81,16 @@ return (
               <Text color="green">-₹ {totalSave}</Text>
       </Box>
       <Box display="flex" justifyContent="space-between" mb={2}>
-        <Text>Tax @ 18%:</Text>
-              <Text>₹ {total*0.18 }</Text>
+        <Text>Tax @ 12%:</Text>
+              <Text>₹ {total*0.12 }</Text>
       </Box>
       <hr />
       <Box display="flex" justifyContent="space-between">
         <Text>Total price:</Text>
-              <Text fontWeight="bold">₹ { total + total*0.18 -totalSave}</Text>
+              <Text fontWeight="bold">₹ { total + total*0.12 -totalSave}</Text>
       </Box>
       <Box mt={3}>
-              <Button colorScheme="green" size="lg" w="full" mb={2} onClick={handlePurchase}>
+              <Button colorScheme="pink.300" backgroundColor={"pink.500"} size="lg" w="full" mb={2} onClick={handlePurchase}>
           Make Purchase
         </Button>
         <Button variant="outline" size="lg" w="full" mt={2} onClick={handleBackToShop}>

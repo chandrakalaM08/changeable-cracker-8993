@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "../pages/HomePage";
@@ -26,21 +27,20 @@ const AllRoutes = () => {
             // </PrivateRoute>
           }
         ></Route>
-        <Route
-          path="/payment"
-          element={
-            <PrivateRoute>
-              <PaymentPage />
-            </PrivateRoute>
-          }
-        ></Route>
+         <Route path="/payment" element={
+                    // <PrivateRoute>
+                        <PaymentPage />
+                    // </PrivateRoute>
+                } > <Route/>
         <Route path="/products/:id" element={<SingleProductPage />}></Route>
         <Route path="*" element={<PageNotFound />}></Route>
+ <Route path="/checkout" element={<Checkout/>}/><Route/>
 
         <Route path="/approutes" element={<AppRoutes/>}></Route>
       </Routes>
     </div>
   );
 };
+
 
 export default AllRoutes;
