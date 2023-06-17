@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Grid, Image, Stack, Text, useToast } from '@chakra-ui/react'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 
 interface Product {
   categories: string,
@@ -30,6 +30,9 @@ const SingleProductPage = () => {
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const toast = useToast();
+
+
+
   
   const fetchProduct = async () => {
     try {
@@ -40,6 +43,8 @@ const SingleProductPage = () => {
     } catch (error) {
       console.log(error);
     }
+
+    
     
   };
 
@@ -55,13 +60,21 @@ const SingleProductPage = () => {
     if (selectedSize) {
       // Perform the add to cart logic
       const cartItem = {
+        images:product?.images.image2,
+        price:product?.price,
         id: product?.id,
         title: product?.title,
         size: selectedSize,
+        quantity:1
       };
       console.log('Adding to cart:', cartItem);
 
       // Display a toast notification
+    const existingCartItems = localStorage.getItem('cartItems');
+    const cartItems = existingCartItems ? JSON.parse(existingCartItems) : [];
+    cartItems.push(cartItem);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      
       toast({
         title: 'Successfully Added',
         description: 'This product has been added to your cart.',
@@ -77,8 +90,17 @@ const SingleProductPage = () => {
         duration: 3000,
         isClosable: true,
       });
-    }
+     }
   };
+  // let cartItems: cartItems[] = [];
+  // if (localStorage.getItem('cartItems')) {
+  //   cartItems = JSON.parse(localStorage.setItem("cartItems"));
+  // }
+  // const selectedProduct = { id:product?.id, picture:product?.images.image1, price: product?.price, title: product?.title, quantity: 1 , title : product?.title ,description:product?.description , brand:product?.brand,category:product?.categories};
+  // cartItems.push(selectedProduct);
+
+  // localStorage.setItem('cartItems', JSON.stringify(cartItems))  
+ 
   
   return (
     <div style={{ width: "100%", border: "0px solid red", margin: "auto" }}>

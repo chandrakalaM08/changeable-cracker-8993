@@ -8,6 +8,7 @@ import SingleProductPage from '../pages/SingleProductPage'
 import PageNotFound from "../pages/PageNotFound"
 import PrivateRoute from './PrivateRoute'
 import LoginPage from '../pages/LoginPage'
+import Checkout from '../components/checkout'
 
 const AllRoutes = () => {
     return (
@@ -22,10 +23,13 @@ const AllRoutes = () => {
                     // </PrivateRoute>
                 }></Route>
                 <Route path="/payment" element={
-                    <PrivateRoute>
+                    // <PrivateRoute>
                         <PaymentPage />
-                    </PrivateRoute>}></Route>
+                    // </PrivateRoute>
+                } >
+                    </Route>
                 <Route path="/products/:id" element={<SingleProductPage />}></Route>
+                <Route path="/checkout" element={<Checkout/>}/><Route/>
                 <Route path="*" element={<PageNotFound />}></Route>
             </Routes>
         </div>
