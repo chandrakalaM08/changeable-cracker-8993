@@ -1,66 +1,88 @@
-import {
-    Flex,
-    Box,
-    FormControl,
-    FormLabel,
-    Input,
-    Checkbox,
-    Stack,
-    Link,
-    Button,
-    Heading,
-    Text,
-    useColorModeValue,
-  } from '@chakra-ui/react';
+
   
+  import React, { useContext, useRef } from "react";
+  import { Button, Col, Container, Form, Navbar } from "react-bootstrap";
+  import { AuthContext } from "../context/AuthContext";
+  import { auth } from "../firebaseSetup";
   export default function LoginPage() {
-    return (
-      <Flex
-        minH={'100vh'}
-        align={'center'}
-        justify={'center'}
-        bg={useColorModeValue('gray.50', 'gray.800')}>
-        <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-          <Stack align={'center'}>
-            <Heading fontSize={'4xl'}>Sign in to your account</Heading>
-            <Text fontSize={'lg'} color={'gray.600'}>
-              to enjoy all of our cool <Link color={'blue.400'}>features</Link> ✌️
-            </Text>
-          </Stack>
-          <Box
-            rounded={'lg'}
-            bg={useColorModeValue('white', 'gray.700')}
-            boxShadow={'lg'}
-            p={8}>
-            <Stack spacing={4}>
-              <FormControl id="email">
-                <FormLabel>Email address</FormLabel>
-                <Input type="email" />
-              </FormControl>
-              <FormControl id="password">
-                <FormLabel>Password</FormLabel>
-                <Input type="password" />
-              </FormControl>
-              <Stack spacing={10}>
-                <Stack
-                  direction={{ base: 'column', sm: 'row' }}
-                  align={'start'}
-                  justify={'space-between'}>
-                  <Checkbox>Remember me</Checkbox>
-                  <Link color={'blue.400'}>Forgot password?</Link>
-                </Stack>
-                <Button
-                  bg={'blue.400'}
-                  color={'white'}
-                  _hover={{
-                    bg: 'blue.500',
-                  }}>
-                  Sign in
-                </Button>
-              </Stack>
-            </Stack>
-          </Box>
-        </Stack>
-      </Flex>
-    );
-  }
+    
+      const user = useContext(AuthContext);
+    
+      const emailRef = useRef<HTMLInputElement>(null);
+      const passwordRef = useRef<HTMLInputElement>(null);
+    
+      const createAccount = async () => {
+        try {
+          await auth.createUserWithEmailAndPassword(
+            emailRef.current!.value,
+            passwordRef.current!.value
+          );
+        } catch (error) {
+          console.error(error);
+        }
+      };
+    
+      const signIn = async () => {
+        try {
+          await auth.signInWithEmailAndPassword(
+            emailRef.current!.value,
+            passwordRef.current!.value
+          );
+        } catch (error) {
+          console.error(error);
+        }
+      };
+    
+      const signOut = async () => {
+        await auth.signOut();
+      };
+    
+      return (
+        <>
+          <Navbar className="justify-content-between" bg="dark" variant="dark">
+            <Navbar.Brand>Firebase Authentication</Navbar.Brand>
+            {user && <Button onClick={signOut}>Sign Out</Button>}
+          </Navbar>
+          {!user ? (
+            <Container style={{ maxWidth: "500px" }} fluid>
+              <Form className="mt-4">
+                <Form.Group controlId="formEmail">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control ref={emailRef} type="email" placeholder="email" />
+                </Form.Group>
+                <Form.Group controlId="formPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    ref={passwordRef}
+                    type="password"
+                    placeholder="password"
+                  />
+                </Form.Group>
+                <Form.Row>
+                  <Col xs={6}>
+                    <Button onClick={createAccount} type="button" block>
+                      Sign Up
+                    </Button>
+                  </Col>
+                  <Col xs={6}>
+                    <Button
+                      onClick={signIn}
+                      type="button"
+                      variant="secondary"
+                      block
+                    >
+                      Sign In
+                    </Button>
+                  </Col>
+                </Form.Row>
+              </Form>
+            </Container>
+          ) : (
+            <h2 className="mt-4 text-center">Welcome {user.email}</h2>
+          )}
+        </>
+      );
+    }
+    
+    
+  
