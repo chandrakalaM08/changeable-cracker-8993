@@ -5,6 +5,7 @@ import ProductCard from './ProductCard'
 import {useSearchParams} from "react-router-dom"
 import { any } from 'prop-types'
 import Pagination from './Pagination'
+import Sidebar from './Sidebar'
 
 const ProductList = () => {
 
@@ -15,6 +16,7 @@ const ProductList = () => {
     params: {
       categories: searchParams.getAll("categories"),
       color: searchParams.getAll("color"),
+       gender: searchParams.getAll("gender"),
       _order: searchParams.get("order"),
       _sort: searchParams.get("order") && "price"
    }
@@ -27,12 +29,14 @@ const ProductList = () => {
   useEffect(() => {
     const action: any = getProducts(paramObj,page);
   dispatch(action)
-  }, [searchParams])
+  }, [searchParams,page])
   
 
   return (
-  <>
-  <div style={{display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))"}}>
+    <>
+  
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap:"15px" , marginRight:"30px", marginLeft:"30px" }}>
+        <Sidebar/>
     { items.length ? 
       items.map((ele: any) => {
         return <ProductCard {...ele} key={ele.id} />

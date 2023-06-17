@@ -11,7 +11,7 @@ import sale2 from "../assets/sale2.png"
 
 // Define the SliderShow component
 export default function SliderShow() {
-    return (
+    return (<>
         <Box maxWidth="90%" margin="auto" display="flex" justifyContent="center">
             <Swiper
                 spaceBetween={30}
@@ -53,6 +53,9 @@ export default function SliderShow() {
                     />
                 </SwiperSlide>
             </Swiper>
+
         </Box>
+        <div style={{ marginBottom: "30px" }}></div>
+    </>
     );
 }

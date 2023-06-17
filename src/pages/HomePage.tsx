@@ -32,8 +32,11 @@ const HomePage = () => {
                 }}
             >
                 NEW ARRIVALS
-            </p>
-          <CarouselCard/>
+      </p>
+      <div>
+  <CarouselCard/>
+      </div>
+        
     </div>
   )
 }

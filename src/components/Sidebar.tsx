@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { useSearchParams } from "react-router-dom"
 import { any } from 'prop-types'
+import { Box } from '@chakra-ui/layout'
 
 const Sidebar = () => {
 
@@ -10,24 +11,25 @@ const Sidebar = () => {
   const initialCategory = searchParams.getAll("categoies")
   const initialColor = searchParams.getAll("color")
   const initialOrder = searchParams.get("order")
-
+  const initialGender = searchParams.getAll("gender")
   const [categories, setCategories] = useState(initialCategory || [])
   const [color, setColor] = useState(initialColor || [])
-
+ const [gender, setGender] = useState(initialGender || [])
   const [order, setOrder] = useState(initialOrder || "")
 
 
   useEffect(() => {
-  const params: { color: string[]; categories: string[]; order?: string } = {
+  const params: { color: string[]; categories: string[]; order?: string ,gender : string[] } = {
   color,
     categories,
+    gender,
   
 };
 
     order && (params.order  = order)
     setSearchParams(params)
 
-  }, [categories, color, order])
+  }, [categories, color, order,gender])
 
 
   const handleCategory = (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -46,6 +48,24 @@ const Sidebar = () => {
     setCategories(newCategory)
 
   }
+
+   const handleGender = (e :React.ChangeEvent<HTMLInputElement>) => {
+
+    const { value } = e.target;
+
+    let newGender = [...gender]
+
+    if (newGender.includes(value)) {
+      newGender = newGender.filter((el) => el !== value)
+    }
+    else {
+      newGender.push(value)
+    }
+
+    setGender(newGender)
+
+  }
+
 
   const handleColor = (e :React.ChangeEvent<HTMLInputElement>) => {
 
@@ -74,7 +94,16 @@ const Sidebar = () => {
 
 
   return (
-    <div style={{ textAlign: "left", marginLeft: "50px" }}>
+    <Box   textAlign="left"
+     marginLeft="55px"
+      width="200px"
+      display={{ base: 'block', md: 'flex' }}
+      flexDirection={{ base: 'column', md: 'column' }}
+      alignItems={{ base: 'baseline', md: 'baseline' }}
+      borderRight="1px solid gray"
+      minHeight="fit-content"
+      fontWeight={{ base: '600', md: '499' }}
+    fontSize={{ base: '20px', md: '15px' }}>
       <h3 style={{fontWeight:600}}>SORT BY PRICE</h3>
       <div>
         <div>
@@ -167,7 +196,20 @@ const Sidebar = () => {
           checked={categories.includes("boots")} />
         <label>Boots</label>
       </div>
-
+      <br />
+        <h3 style={{fontWeight:600}}>GENDER</h3>
+      <div>
+        <input type='checkbox' value={"men"}
+          onChange={handleGender}
+          checked={gender.includes("men")} />
+        <label>Men</label>
+      </div>
+      <div>
+        <input type='checkbox' value={"women"}
+          onChange={handleGender}
+          checked={gender.includes("women")} />
+        <label>Women</label>
+      </div>
       <br />
       <h3 style={{fontWeight:600}}>COLOR</h3>
       <div>
@@ -206,7 +248,10 @@ const Sidebar = () => {
           checked={color.includes("brown")} />
         <label> 🟤 Brown</label>
       </div>
-    </div>
+      <br />
+      <br />
+      <br />
+    </Box>
   )
 }
 

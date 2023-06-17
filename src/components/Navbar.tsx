@@ -23,8 +23,9 @@ import {
 } from '@chakra-ui/icons';
 
 import { useNavigate} from "react-router-dom"
-import { AiFillHeart, AiOutlineSearch, AiOutlineShoppingCart } from "react-icons/ai";
+
 import logo from "../assets/logo.jpg"
+import { DeskTop } from './DeskTop';
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -35,10 +36,11 @@ export default function Navbar() {
     navigate("/")
   };
 
-  return (<div style={{background:"white"}}>
-    <Container w={'full'} style={{ position: "fixed",
-    zIndex: "5",
-      width: "80%",
+  return (
+    <div style={{ position: "sticky",
+      zIndex: "5",
+    top:"0",
+      width: "100%",
     background:"white"}}>
        
       <Flex
@@ -67,9 +69,10 @@ export default function Navbar() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'center' }}>
-         <img src={logo} alt='logo' width={110} style={{marginTop:"-15px"}} onClick={handleLogoClick} />
+         <img src={logo} alt='logo' width={130} style={{marginTop:"-15px" , marginLeft:"70px"}} onClick={handleLogoClick} /> 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10} w={"100%"}>
-            <DesktopNav />
+             <DesktopNav />  
+       
             <Stack
           flex={{ base: 1, md: 0 }}
           justify={'flex-end'}
@@ -80,55 +83,37 @@ export default function Navbar() {
           
         </Stack>
           </Flex>
+               <DeskTop/>
         </Flex>
-
+<hr/>
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />
       </Collapse>
-    </Container>
     </div>
+   
   );
 }
 
 const DesktopNav = () => {
 
-  const navigate = useNavigate()
-
-  const handleCartClick = () => {
-    navigate("/cart")
-  };
-
-   const handleLoginClick = () => {
-    navigate("/login")
-  };
-  
   const linkColor = useColorModeValue('gray.600', 'gray.200');
   const linkHoverColor = useColorModeValue('orange.400', 'white');
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
     return (
       <Flex align={'start'} style={{background : "white" , width:"full"}}>
-        <Stack direction={'row'} spacing={4} width={"150%"} height={10}>
-            <input type='text' width={250} height={60} style={{border:"1px solid gray.100"}}/>
-
-            <Button
-            as={'a'}
-            fontSize={'xl'}
-            fontWeight={400}
-            variant={'link'}
-                href={'#'}
-              >
-            <AiOutlineSearch/>
-            </Button>
-      {NAV_ITEMS.map((navItem) => (
+        <Stack direction={'row'} spacing={4} width={"100%"}>
+          
+          {NAV_ITEMS.map((navItem) => (
+        
         <Box key={navItem.label} style={{background : "white"}}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
               <Link
-                p={6}
-                href={navItem.href ?? '#'}
+                    p={6}
+                href={navItem.href}
                 fontSize={'md'}
                 fontWeight={600}
                 color={linkColor}
@@ -160,36 +145,7 @@ const DesktopNav = () => {
           </Popover>
         </Box>
       ))}
-            <Button
-            as={'a'}
-            fontSize={'md'}
-            fontWeight={400}
-            variant={'link'}
-            href={'#'}>
-            <AiFillHeart color='red'/>
-          </Button>
-  
-          <Button
-            fontSize={'md'}
-            fontWeight={400}
-            variant={'link'}
-          onClick={handleCartClick}>
-              Cart <AiOutlineShoppingCart />      
-            </Button>
-          <Button
-            onClick={handleLoginClick}
-            as={'a'}
-            display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'md'}
-            fontWeight={600}
-            color={'white'}
-            bg={'orange.300'}
-            href={'#'}
-            _hover={{
-              bg: 'pink.200',
-            }}>
-            Sign In
-          </Button> 
+          
         </Stack>
     </Flex>
   );
@@ -301,7 +257,12 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
   {
+    label: 'BestSellers',
+    href: '/products',
+    },
+  {
     label: 'Men',
+     href: '/products?gender=men',
     children: [
     {
         label: 'T-Shirt',
@@ -323,6 +284,7 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Women',
+     href: '/products?gender=women',
     children: [
       {
         label: 'T-Shirt',
@@ -339,15 +301,13 @@ const NAV_ITEMS: Array<NavItem> = [
     ],
   },
   {
-    label: 'Accessories',
-    href: '#',
+    label: 'Beauty',
+    href: '/products?categories=beautycare',
   },
-  {
-    label: 'Winter',
-    href: '#',
-    },
+  
   {
     label: 'Sale',
+    href:"/products",
     children: [
     {
         label: 'T-Shirt',
@@ -372,3 +332,7 @@ const NAV_ITEMS: Array<NavItem> = [
     ]
   }
 ];
+
+
+
+
