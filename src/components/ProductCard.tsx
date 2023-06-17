@@ -68,11 +68,12 @@ function truncateWords(title : string) {
 
 
   return (
-    <Flex p={50} w="lg" alignItems="center" justifyContent="left" >
+   
       <Box
         bg={useColorModeValue('white', 'gray.800')}
         maxW="sm"
-        border={"1px solid gray"}
+     
+      style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset"}}
         borderWidth="1px"
         rounded="lg"
         shadow="lg"
@@ -91,7 +92,7 @@ function truncateWords(title : string) {
             
           alt={`Picture of ${title}`}
           roundedTop="md"
-          width={265}
+          width={"full"}
           height={285}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -135,7 +136,7 @@ function truncateWords(title : string) {
           </Flex>
         </Box>
       </Box>
-    </Flex>
+   
   )
 }
 
