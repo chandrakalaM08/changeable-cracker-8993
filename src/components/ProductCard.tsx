@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Flex,
@@ -51,6 +51,8 @@ function Rating({ rating, numReviews }: RatingProps) {
 
 
 const ProductCard = ({ id, title, brand, price, images, rating, count }: any) => {
+
+    const [isHovered, setIsHovered] = useState<boolean>(false);
   
 function truncateWords(title : string) {
   const words = title.split('');
@@ -66,7 +68,7 @@ function truncateWords(title : string) {
 
 
   return (
-    <Flex p={50} w="full" alignItems="center" justifyContent="left" >
+    <Flex p={50} w="lg" alignItems="center" justifyContent="left" >
       <Box
         bg={useColorModeValue('white', 'gray.800')}
         maxW="sm"
@@ -83,14 +85,18 @@ function truncateWords(title : string) {
             right={2}
             bg="red.200"
           />
-      
+      <Link to={`/products/${id}`}>
         <Image
-          src={images.image1}
+            src={isHovered ? images.image1 : images.image3}
+            
           alt={`Picture of ${title}`}
           roundedTop="md"
-          width={200}
+          width={265}
+          height={285}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         />
-
+    </Link>
         <Box p="6">
           <Box display="flex" alignItems="baseline">
               <Badge rounded="full" px="8" fontSize="0.6em" colorScheme="red" textAlign={'left'}>
@@ -99,7 +105,7 @@ function truncateWords(title : string) {
           </Box>
           <Flex mt="1" justifyContent="space-between" alignContent="center">
             <Box
-              fontSize="xl"
+              fontSize="md"
               fontWeight="semibold"
               as="h4"
               lineHeight="tight"
@@ -113,7 +119,7 @@ function truncateWords(title : string) {
               color={'gray.800'}
               fontSize={'0.6em'}>
               <chakra.a href={'#'} display={'flex'}>
-                <Icon as={FiShoppingCart} h={7} w={7} alignSelf={'center'} />
+                <Icon as={FiShoppingCart} h={5} w={5} alignSelf={'center'} />
               </chakra.a>
             </Tooltip>
           </Flex>

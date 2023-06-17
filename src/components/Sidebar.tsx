@@ -7,33 +7,34 @@ const Sidebar = () => {
 
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const initialCategory = searchParams.getAll("category")
-  const initialGender = searchParams.getAll("gender")
+  const initialCategory = searchParams.getAll("categoies")
+  const initialColor = searchParams.getAll("color")
   const initialOrder = searchParams.get("order")
 
-  const [category, setCategory] = useState(initialCategory || [])
-  const [gender, setGender] = useState(initialGender || [])
+  const [categories, setCategories] = useState(initialCategory || [])
+  const [color, setColor] = useState(initialColor || [])
 
   const [order, setOrder] = useState(initialOrder || "")
 
 
   useEffect(() => {
-  const params: { gender: string[]; category: string[]; order?: string } = {
-  gender,
-  category,
+  const params: { color: string[]; categories: string[]; order?: string } = {
+  color,
+    categories,
+  
 };
 
     order && (params.order  = order)
     setSearchParams(params)
 
-  }, [category, gender, order])
+  }, [categories, color, order])
 
 
   const handleCategory = (e:React.ChangeEvent<HTMLInputElement>) => {
 
     const { value } = e.target;
 
-    let newCategory = [...category]
+    let newCategory = [...categories]
 
     if (newCategory.includes(value)) {
       newCategory = newCategory.filter((element) => element !== value)
@@ -42,24 +43,24 @@ const Sidebar = () => {
       newCategory.push(value)
     }
 
-    setCategory(newCategory)
+    setCategories(newCategory)
 
   }
 
-  const handleGender = (e :React.ChangeEvent<HTMLInputElement>) => {
+  const handleColor = (e :React.ChangeEvent<HTMLInputElement>) => {
 
     const { value } = e.target;
 
-    let newGender = [...gender]
+    let newColor = [...color]
 
-    if (newGender.includes(value)) {
-      newGender = newGender.filter((el) => el !== value)
+    if (newColor.includes(value)) {
+      newColor = newColor.filter((el) => el !== value)
     }
     else {
-      newGender.push(value)
+      newColor.push(value)
     }
 
-    setGender(newGender)
+    setColor(newColor)
 
   }
 
@@ -73,50 +74,8 @@ const Sidebar = () => {
 
 
   return (
-    <div>
-      <h3>Filter by Category</h3>
-      <div>
-        <input type='checkbox' value={"top-wear"}
-          onChange={handleCategory}
-          checked={category.includes("top-wear")} />
-        <label>Top Wear</label>
-      </div>
-      <div>
-        <input type='checkbox' value={"bottom-wear"}
-          onChange={handleCategory}
-          checked={category.includes("bottom-wear")} />
-        <label>Bottom Wear</label>
-      </div>
-      <div>
-        <input type='checkbox' value={"foot-wear"}
-          onChange={handleCategory}
-          checked={category.includes("foot-wear")} />
-        <label>Footwear</label>
-      </div>
-
-      <br />
-      <h3>Filter by Gender</h3>
-      <div>
-        <input type='checkbox' value={"male"}
-          onChange={handleGender}
-          checked={gender.includes("male")} />
-        <label>Men</label>
-      </div>
-      <div>
-        <input type='checkbox' value={"female"}
-          onChange={handleGender}
-          checked={gender.includes("female")} />
-        <label>Women</label>
-      </div>
-      <div>
-        <input type='checkbox' value={"kids"}
-          onChange={handleGender}
-          checked={gender.includes("kids")} />
-        <label>Kids</label>
-      </div>
-
-      <br />
-      <h3>Sort by Price</h3>
+    <div style={{ textAlign: "left", marginLeft: "50px" }}>
+      <h3 style={{fontWeight:600}}>SORT BY PRICE</h3>
       <div>
         <div>
           <input type='radio' name='order' value={"asc"} defaultChecked={order === "asc"}   onChange={handleSortOrder}/>
@@ -127,7 +86,126 @@ const Sidebar = () => {
           <label>Descending</label>
         </div>
       </div>
+      <br/>
+      <h3 style={{fontWeight:600}}>CATEGORIES</h3>
+      <div>
+        <input type='checkbox' value={"shirt"}
+          onChange={handleCategory}
+          checked={categories.includes("shirt")}
+        />
+        <label>Shirt</label>
+      </div>
+      <div>
+        <input type='checkbox' value={"kurta"}
+          onChange={handleCategory}
+          checked={categories.includes("kurta")} />
+        <label>Kurta</label>
+      </div>
+      <div>
+        <input type='checkbox' value={"tshirt"}
+          onChange={handleCategory}
+          checked={categories.includes("tshirt")} />
+        <label>T-shirt</label>
+      </div>
+      <div>
+        <input type='checkbox' value={"shorts"}
+          onChange={handleCategory}
+          checked={categories.includes("shorts")} />
+        <label>Shorts</label>
+      </div>
+      <div>
+        <input type='checkbox' value={"dresses"}
+          onChange={handleCategory}
+          checked={categories.includes("dresses")} />
+        <label>Dresses</label>
+      </div>
+      <div>
+        <input type='checkbox' value={"jeans"}
+          onChange={handleCategory}
+          checked={categories.includes("jeans")} />
+        <label>Jeans</label>
+      </div>
+      <div>
+        <input type='checkbox' value={"sweatshirts"}
+          onChange={handleCategory}
+          checked={categories.includes("sweatshirts")} />
+        <label>Sweatshirts</label>
+      </div>
+      <div>
+        <input type='checkbox' value={"sweaters"}
+          onChange={handleCategory}
+          checked={categories.includes("sweaters")} />
+        <label>Sweaters</label>
+      </div>
+      <div>
+        <input type='checkbox' value={"beautycare"}
+          onChange={handleCategory}
+          checked={categories.includes("beautycare")} />
+        <label>Beauty care</label>
+      </div>
+      <div>
+        <input type='checkbox' value={"shoes"}
+          onChange={handleCategory}
+          checked={categories.includes("shoes")} />
+        <label>Shoes</label>
+      </div>
+      <div>
+        <input type='checkbox' value={"jackets"}
+          onChange={handleCategory}
+          checked={categories.includes("jackets")} />
+        <label>Jackets</label>
+      </div>
+      <div>
+        <input type='checkbox' value={"bags"}
+          onChange={handleCategory}
+          checked={categories.includes("bags")} />
+        <label>Bags</label>
+      </div>
+      <div>
+        <input type='checkbox' value={"boots"}
+          onChange={handleCategory}
+          checked={categories.includes("boots")} />
+        <label>Boots</label>
+      </div>
 
+      <br />
+      <h3 style={{fontWeight:600}}>COLOR</h3>
+      <div>
+         <div>
+        <input type='checkbox' value={"blue"}
+          onChange={handleColor}
+          checked={color.includes("blue")} />
+        <label> 🔵 Blue</label>
+      </div>
+       <div>
+        <input type='checkbox' value={"yellow"}
+          onChange={handleColor}
+          checked={color.includes("yellow")} />
+        <label> 🟡 Yellow</label>
+      </div>
+       <div>
+        <input type='checkbox' value={"green"}
+          onChange={handleColor}
+          checked={color.includes("green")} />
+        <label> 🟢 Green</label>
+      </div>
+        <input type='checkbox' value={"black"}
+          onChange={handleColor}
+          checked={color.includes("black")} />
+        <label> ⚫ Black</label>
+      </div>
+      <div>
+        <input type='checkbox' value={"white"}
+          onChange={handleColor}
+          checked={color.includes("white")} />
+        <label> ⚪ White</label>
+      </div>
+      <div>
+        <input type='checkbox' value={"brown"}
+          onChange={handleColor}
+          checked={color.includes("brown")} />
+        <label> 🟤 Brown</label>
+      </div>
     </div>
   )
 }
