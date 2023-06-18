@@ -12,8 +12,23 @@ import {
     Text,
     useColorModeValue,
   } from '@chakra-ui/react';
+  import {signInWithEmailAndPassword} from "firebase/auth"
+  import {auth} from "../firebaseConfig"
+import { useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
   
   export default function LoginPage() {
+    const navigate = useNavigate()
+    const [email, setEmail] =useState<string>("")
+    const [password, setPassword] =useState<string>("")
+    const handlelogin=(e:React.MouseEvent<HTMLButtonElement>)=>
+    {
+      signInWithEmailAndPassword(auth,email,password).then((res)=>console.log(res))
+      .catch((err)=>console.log(err))
+      // console.log(email,password)
+      navigate("/")
+    }
     return (
       <Flex
         minH={'100vh'}
@@ -35,18 +50,18 @@ import {
             <Stack spacing={4}>
               <FormControl id="email">
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" />
+                <Input type="email" onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setEmail(e.target.value)} />
               </FormControl>
               <FormControl id="password">
                 <FormLabel>Password</FormLabel>
-                <Input type="password" />
+                <Input type="password"  onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setPassword(e.target.value)} />
               </FormControl>
               <Stack spacing={10}>
                 <Stack
                   direction={{ base: 'column', sm: 'row' }}
                   align={'start'}
                   justify={'space-between'}>
-                  <Checkbox>Remember me</Checkbox>
+                  {/* <Checkbox>Remember me</Checkbox> */}
                   <Link color={'blue.400'}>Forgot password?</Link>
                 </Stack>
                 <Button
@@ -54,13 +69,22 @@ import {
                   color={'white'}
                   _hover={{
                     bg: 'blue.500',
-                  }}>
+                  }} onClick={handlelogin}>
                   Sign in
+                </Button>
+                <Button
+                  bg={'blue.400'}
+                  color={'white'}
+                  _hover={{
+                    bg: 'blue.500',
+                  }} onClick={()=>navigate("/signup")}>
+                  sign up
                 </Button>
               </Stack>
             </Stack>
           </Box>
         </Stack>
       </Flex>
+      
     );
   }

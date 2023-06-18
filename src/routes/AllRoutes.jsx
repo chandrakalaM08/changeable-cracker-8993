@@ -8,6 +8,7 @@ import SingleProductPage from '../pages/SingleProductPage'
 import PageNotFound from "../pages/PageNotFound"
 import PrivateRoute from './PrivateRoute'
 import LoginPage from '../pages/LoginPage'
+import SignupPage from "../pages/SignupPage"
 
 const AllRoutes = () => {
     return (
@@ -15,6 +16,7 @@ const AllRoutes = () => {
             <Routes>
                 <Route path="/" element={<HomePage />}></Route>
                 <Route path="/login" element={<LoginPage />}></Route >
+                <Route path="/signup" element={<SignupPage />}></Route >
                 <Route path="/products" element={<ProductsPage />}></Route>
                 <Route path="/cart" element={
                     <PrivateRoute>
