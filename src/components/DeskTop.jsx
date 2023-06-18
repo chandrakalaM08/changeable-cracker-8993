@@ -16,10 +16,10 @@ export const DeskTop = () => {
 
     const dispatch = useDispatch()
     const userEmail = localStorage.getItem("loggedInUser")
-    const userInfo = JSON.parse(localStorage.getItem("users") || [])
+    const userInfo = JSON.parse(localStorage.getItem("users")) || []
 
     const getActiveUserName = () => {
-        let activeUser = "JD"
+        let activeUser = ""
         console.log(userEmail)
         console.log(userInfo)
         for (let i = 0; i < userInfo.length; i++) {

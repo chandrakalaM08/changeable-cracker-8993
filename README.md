@@ -29,7 +29,7 @@ https://vast-red-fawn-cuff.cyclic.app/
 ## Features
 ### User Side
     1. Home Page
-    2. Login and Registration
+    2. Login and Signup
     3. Products Page
     4. Single Product Page
     5. Cart Page
@@ -44,18 +44,27 @@ https://vast-red-fawn-cuff.cyclic.app/
 ## This is how the website looks to the user :
 
 ### LandingPage
-![Landing Page]()
+![Landing Page](../changeable-cracker-8993/src/assets/landingpage.png)
 
 Clothy is an online shopping marketplace where men and women of every age can find trendy and affordabe clothes and beautycare products.
 
 ### Products Page
-![Products Page]()
+![Products Page](../changeable-cracker-8993/src/assets/productspage.png)
 
 If you have an extensive database, it might be difficult to find it the products of your choice ,that’s where our sorting and filtering functionalities comes handy to the user. It allows the user to filter the products by various criteria. 
 
 ### Single Product Page
-![Single Product Page]()
+![Single Product Page](../changeable-cracker-8993/src/assets/singleproductpage.png)
 To share more details about individual product, here is the single product page.From this page , the user can select desired size and add the product to cart.
+
+### SignUp Page
+![Signup](../changeable-cracker-8993/src/assets/signup.png)
+User can create his/her account and the authentication will be done by Firebase.
+
+### Login Page
+![Signup](../changeable-cracker-8993/src/assets/loginpage.png)
+User can not access the cart page without login.
+
 
 ### Cart Page
 ![Cart Page]()
