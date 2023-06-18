@@ -1,0 +1,74 @@
+.collection {
+    width: 96%;
+    margin: 10px auto;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+    row-gap: 25px;
+    overflow: hidden;
+}
+
+
+.collection img {
+    overflow: hidden;
+    transition: 0.5s all ease-in-out;
+}
+
+
+.collection div {
+    overflow: hidden;
+}
+
+
+.collection div img {
+    /* width:470px */
+    overflow: hidden;
+    width: 100%;
+}
+
+
+.collection img:hover {
+    transform: scale(1.1);
+    overflow: hidden;
+}
+
+
+.collection div button {
+    background: none;
+    margin: 40px 0px;
+    text-decoration: inherit;
+    font-family: system-ui;
+    font-size: 1.3rem;
+    padding: 0.5rem 2rem;
+    color: rgb(45, 44, 44);
+}
+
+
+.border-gradient {
+    border: 5px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+}
+
+
+.border-gradient-purple {
+    border-image-source: linear-gradient(to left, #F6AD55, #d53a9d);
+}
+
+
+@media screen and (min-width: 320px) and (max-width: 650px) {
+
+    .collection {
+        width: 96%;
+        margin: 10px auto;
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: repeat(1, 1fr);
+        column-gap: 20px;
+        row-gap: 25px;
+        overflow: hidden;
+    }
+
+
+}
