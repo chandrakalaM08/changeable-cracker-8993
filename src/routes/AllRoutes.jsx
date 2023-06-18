@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import LoginPage from "../pages/LoginPage";
 
 import AppRoutes from "../admin/Components/AppRoutes";
+import Checkout from "../components/checkout";
 
 const AllRoutes = () => {
   return (
@@ -31,7 +32,7 @@ const AllRoutes = () => {
                     // <PrivateRoute>
                         <PaymentPage />
                     // </PrivateRoute>
-                } > <Route/>
+                } /> <Route/>
         <Route path="/products/:id" element={<SingleProductPage />}></Route>
         <Route path="*" element={<PageNotFound />}></Route>
  <Route path="/checkout" element={<Checkout/>}/><Route/>
