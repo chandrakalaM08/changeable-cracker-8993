@@ -99,7 +99,7 @@ export default function Navbar() {
 const DesktopNav = () => {
 
   const linkColor = useColorModeValue('gray.600', 'gray.200');
-  const linkHoverColor = useColorModeValue('orange.400', 'white');
+  const linkHoverColor = useColorModeValue('pink.400', 'white');
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
     return (

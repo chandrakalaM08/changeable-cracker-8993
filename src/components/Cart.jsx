@@ -81,7 +81,7 @@ useEffect(()=>{
         <p style={{fontSize:'25px'}}>Empty Bag!</p>
         <p style={{fontSize:'18px',marginTop:'10px'}}>Let's Explore!</p>
         <Link to={"/products"}>
-        <button style={{marginTop:'43px',color:'white',border:"1px solid purple",backgroundColor:"rgb(250, 198, 3)", width:"230px",borderRadius:'5px', padding:'10px',fontWeight:"bold",borderStyle:"none"}}>Start Shopping</button>
+        <button style={{marginTop:'43px',color:'white',border:"1px solid purple",backgroundColor:"rgb(234, 79, 162)", width:"230px",borderRadius:'5px', padding:'10px',fontWeight:"bold",borderStyle:"none"}}>Start Shopping</button>
       </Link>
       </div>
       

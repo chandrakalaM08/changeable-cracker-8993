@@ -11,6 +11,7 @@ import {
   chakra,
   Tooltip,
   border,
+  grid,
 } from '@chakra-ui/react';
 import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { FiShoppingCart } from 'react-icons/fi';
@@ -68,8 +69,8 @@ function truncateWords(title : string) {
 
 
   return (
-   
-      <Box
+  
+       <Box
         bg={useColorModeValue('white', 'gray.800')}
         maxW="sm"
      
@@ -77,7 +78,7 @@ function truncateWords(title : string) {
         borderWidth="1px"
         rounded="lg"
         shadow="lg"
-        position="relative">
+        position="relative" >
         
           <Circle
             size="10px"
@@ -99,7 +100,9 @@ function truncateWords(title : string) {
         />
     </Link>
         <Box p="6">
-          <Box display="flex" alignItems="baseline">
+          <Box display="flex" 
+          alignItems="baseline"
+          >
               <Badge rounded="full" px="8" fontSize="0.6em" colorScheme="red" textAlign={'left'}>
              {count} left
               </Badge>
@@ -136,7 +139,7 @@ function truncateWords(title : string) {
           </Flex>
         </Box>
       </Box>
-   
+      
   )
 }
 

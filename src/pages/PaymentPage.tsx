@@ -25,6 +25,7 @@ import { FaCheck } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContextProvider';
 
+
 const PaymentPage = () => {
   const toast = useToast();
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ const PaymentPage = () => {
   const [status, setStatus] = useState(false);
   const [upi, setUpi] = useState<string | null>(null);
   const [bill, setBill] = useState(0);
+
   // const { isOpen, onOpen, onClose } = useDisclosure();
 
  function postorders(){
@@ -127,7 +129,7 @@ const PaymentPage = () => {
       direction={{ base: 'column', sm: 'column', md: 'row', lg: 'row', xl: 'row', '2xl': 'row' }}
     >
       <Box w="50%">
-        <Image src="https://www.acquisition-international.com/wp-content/uploads/2021/05/payment.jpg" w="100%" marginTop="50px" />
+        <Image src="https://www.acquisition-international.com/wp-content/uploads/2021/05/payment.jpg" w="100%" marginTop="150px" />
       </Box>
 
       <Box w="50%" m="30px">

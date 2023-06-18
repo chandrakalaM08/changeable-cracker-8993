@@ -31,8 +31,9 @@ const AllRoutes = () => {
          {/* <Route path="/payment" element={
                     // <PrivateRoute>
                         <PaymentPage />
-                    // </PrivateRoute>
+
                 } > <Route/> */}
+
         <Route path="/products/:id" element={<SingleProductPage />}></Route>
         <Route path="*" element={<PageNotFound />}></Route>
  <Route path="/checkout" element={<Checkout/>}/><Route/>

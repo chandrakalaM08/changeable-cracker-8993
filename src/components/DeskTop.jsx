@@ -50,7 +50,7 @@ export const DeskTop = () => {
                 fontSize={'md'}
                 fontWeight={600}
                 color={'white'}
-                bg={'orange.300'}
+                bg={'pink.500'}
                 href={'#'}
                 _hover={{
                     bg: 'pink.200',
