@@ -14,6 +14,7 @@ import AppRoutes from "../admin/Components/AppRoutes";
 import Checkout from "../components/checkout";
 import SighnUpPage from "../pages/SignupPage";
 
+
 const AllRoutes = () => {
   return (
     <div>

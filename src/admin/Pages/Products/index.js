@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./index.css"
+import {Link} from "react-router-dom"
+
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -64,9 +66,10 @@ export default function Products() {
             <p className="product-count">Count: {product.count}</p>
 
             <div className="product-actions">
-              <button className="edit-button">
+            <Link to={`/edit/${product.id}`}>
+              <button className="edit-button" >
                 <EditOutlined />
-              </button>
+              </button></Link>
               <button
                 className="delete-button"
                 onClick={() => handleDelete(product.id)}
