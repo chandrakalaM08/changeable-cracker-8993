@@ -41,7 +41,7 @@ const PaymentPage = () => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
 
  function postorders(){
-  
+  localStorage.setItem("cartItems", JSON.stringify([]));
   }
 
   useEffect(() => {
@@ -132,12 +132,12 @@ const PaymentPage = () => {
 
       <Box w="50%" m="30px">
         <Box>
-          <Heading as="h2" size="lg" mb="10px" color="#e6378c">
+          <Heading as="h2" size="lg" mb="10px" color="pink.500">
             Total Amount : {bill}
           </Heading>
         </Box>
         <form onSubmit={handleSubmitForm}>
-          <FormLabel p="10px" color="white" bg="#e6378c">
+          <FormLabel p="10px" color="white" bg="pink.500">
             Credit/Debit Card
           </FormLabel>
 
@@ -203,7 +203,7 @@ const PaymentPage = () => {
                       <FaCheck color="green" fontSize="150px" />
                     </Flex>
                     <Flex justifyContent="center" alignItems="center">
-                      <Text color="#e6378c" fontSize="18px" as="b" textAlign="center" mt="30px">
+                      <Text color="pink.500" fontSize="18px" as="b" textAlign="center" mt="30px">
                         Payment Successful
                       </Text>
                     </Flex>
@@ -223,9 +223,9 @@ const PaymentPage = () => {
                 postorders()}}
 
                 type="submit"
-                bg="#e6378c"
+                bg="pink.500"
                 _hover={{
-                  bg: '#e938da',
+                  bg: "pink.100",
                 }}
               >
                 Pay Now
@@ -234,7 +234,7 @@ const PaymentPage = () => {
           </Box>
         </form>
         <Box mt="30px">
-          <FormLabel p="10px" color="white" bg="#e6378c">
+          <FormLabel p="10px" color="white" bg="pink.500">
             UPI
           </FormLabel>
           <Box>
@@ -254,9 +254,9 @@ const PaymentPage = () => {
               />
               <Button
                 color="white"
-                bg="#e6378c"
+                bg="pink.500"
                 _hover={{
-                  bg: '#e938da',
+                  bg: "pink.200",
                 }}
               >
                 Pay Now
@@ -278,9 +278,9 @@ const PaymentPage = () => {
               />
               <Button
                 color="white"
-                bg="#e6378c"
+                bg="pink.500"
                 _hover={{
-                  bg: '#e938da',
+                  bg: "pink.200",
                 }}
               >
                 Pay Now
@@ -302,9 +302,9 @@ const PaymentPage = () => {
               />
               <Button
                 color="white"
-                bg="#e6378c"
+                bg="pink.500"
                 _hover={{
-                  bg: '#e938da',
+                  bg: "pink.200",
                 }}
               >
                 Pay Now
