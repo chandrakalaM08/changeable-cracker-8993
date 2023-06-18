@@ -1,6 +1,10 @@
-export const LOGIN_REQUEST = "LOGIN_REQUEST";
+export const AUTH_REQ = "AUTH_REQ";
+export const AUTH_REQ_SUCCESS = "AUTH_REQ_SUCCESS";
+export const AUTH_REQ_FAILURE = "AUTH_REQ_FAILURE";
+
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAILURE = "LOGIN_FAILURE";
+
+export const SIGNOUT = "SIGNOUT";
 
 export const PRODUCT_REQUEST = "PRODUCT_REQUEST";
 export const PRODUCT_FAILURE = "PRODUCT_FAILURE";

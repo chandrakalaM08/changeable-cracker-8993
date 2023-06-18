@@ -36,6 +36,7 @@ export default function Navbar() {
     navigate("/")
   };
 
+  
   return (
     <div style={{ position: "sticky",
       zIndex: "5",

@@ -1,30 +1,84 @@
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "../actionTypes";
+import { SignupReducer } from "../types"
+import { AUTH_REQ, AUTH_REQ_FAILURE, AUTH_REQ_SUCCESS, LOGIN_SUCCESS, SIGNOUT } from "../actionTypes";
 
 const initialState = {
-  isAuth: false,
-  token: "",
-  isLoading: false,
-  isError: false,
-};
+    displayName :"",
+    isLoading : false,
+    isError : false,
+    isAuth : false,
+    tokenId : '',
+    loginToken : '',
+    errorMsg: '',
+    signUpAuth :false
+}
 
-export const reducer = (state = initialState, { type, payload }:any) => {
-  switch (type) {
-    case LOGIN_REQUEST: {
-      return { ...state, isLoading: true };
+
+
+export const reducer = (state = initialState, { type, payload }: SignupReducer) => {
+    console.log(payload , "checking payload ")
+   switch(type){
+
+    case AUTH_REQ : {
+        return {
+            ...state,
+            displayName : "",
+            isLoading : true,
+            isError : false,
+            tokenId : '',
+            loginToken : '',
+            isAuth : false,
+            errorMsg: '',
+            signUpAuth :false
+        }
     }
-    case LOGIN_SUCCESS: {
-      return {
-        ...state,
-        isLoading: false,
-        isAuth: true,
-        token: payload,
-        isError: false,
-      };
+
+    case AUTH_REQ_SUCCESS : {
+        return {
+            ...state,
+            displayName: "",
+            isLoading : false,
+            tokenId : payload, 
+            isError : false,
+            loginToken : '',
+            isAuth : false,
+            errorMsg: '',
+            signUpAuth :true
+        }
     }
-    case LOGIN_FAILURE: {
-      return { ...state, isLoading: false, isError: true };
+ case SIGNOUT : {
+        return initialState
     }
-    default:
-      return state;
-  }
-};
+    case AUTH_REQ_FAILURE : {
+        return {
+            ...state,
+            displayName: "",
+            isLoading : false,
+            isError : true,
+            errorMsg : payload,
+            tokenId : '',
+            loginToken : '',
+            isAuth: false,
+            signUpAuth :false
+        }
+    }
+
+    case LOGIN_SUCCESS : {
+        return {
+            ...state,
+            displayName: "",
+            isLoading : false,
+            isError : false,
+            errorMsg : '',
+            tokenId : '',
+            loginToken : payload,
+            isAuth: true,
+            signUpAuth :false
+        }
+    }
+
+     default : {
+        return state;
+     }
+   }
+
+}
