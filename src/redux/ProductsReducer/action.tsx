@@ -40,3 +40,5 @@ export const getProducts = (paramObj:any,page:number) => (dispatch: any) =>{
     .catch((err) => dispatch({ type: PRODUCT_FAILURE }));
 };
 
+
+

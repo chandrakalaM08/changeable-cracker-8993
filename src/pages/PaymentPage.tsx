@@ -25,6 +25,7 @@ import { FaCheck } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContextProvider';
 
+
 const PaymentPage = () => {
   const toast = useToast();
   const navigate = useNavigate();
@@ -37,10 +38,21 @@ const PaymentPage = () => {
   const [carddata, setCarddata] = useState([]);
   const [status, setStatus] = useState(false);
   const [upi, setUpi] = useState<string | null>(null);
-  const { price } = useContext(AuthContext);
+  const [bill, setBill] = useState(0);
 
   // const { isOpen, onOpen, onClose } = useDisclosure();
 
+ function postorders(){
+  localStorage.setItem("cartItems", JSON.stringify([]));
+  }
+
+  useEffect(() => {
+    let storedBill = +(localStorage.getItem("total_bill") || 0);
+    console.log(storedBill,typeof storedBill)
+    let items=storedBill+(storedBill*0.12)
+    // const items = storedBill ? JSON.parse(storedBill) ;
+    setBill(items);
+  }, []);
 
 
 
@@ -101,6 +113,8 @@ const PaymentPage = () => {
     }, 4000);
   }
 
+ 
+
   return (
     <Flex
       mt="100px"
@@ -115,17 +129,17 @@ const PaymentPage = () => {
       direction={{ base: 'column', sm: 'column', md: 'row', lg: 'row', xl: 'row', '2xl': 'row' }}
     >
       <Box w="50%">
-        <Image src="https://www.acquisition-international.com/wp-content/uploads/2021/05/payment.jpg" w="100%" marginTop="50px" />
+        <Image src="https://www.acquisition-international.com/wp-content/uploads/2021/05/payment.jpg" w="100%" marginTop="150px" />
       </Box>
 
       <Box w="50%" m="30px">
         <Box>
-          <Heading as="h2" size="lg" mb="10px" color="#e6378c">
-            Total Amount : {price}
+          <Heading as="h2" size="lg" mb="10px" color="pink.500">
+            Total Amount : {bill}
           </Heading>
         </Box>
         <form onSubmit={handleSubmitForm}>
-          <FormLabel p="10px" color="white" bg="#e6378c">
+          <FormLabel p="10px" color="white" bg="pink.500">
             Credit/Debit Card
           </FormLabel>
 
@@ -191,13 +205,14 @@ const PaymentPage = () => {
                       <FaCheck color="green" fontSize="150px" />
                     </Flex>
                     <Flex justifyContent="center" alignItems="center">
-                      <Text color="#e6378c" fontSize="18px" as="b" textAlign="center" mt="30px">
+                      <Text color="pink.500" fontSize="18px" as="b" textAlign="center" mt="30px">
                         Payment Successful
                       </Text>
                     </Flex>
                   </ModalBody>
                   <ModalFooter>
-                    <Button colorScheme="blue" mr={3} onClick={onClose}>
+                    <Button colorScheme="blue" mr={3} onClick={()=>{onClose()
+                       navigate("/checkout")}}>
                       Close
                     </Button>
                   </ModalFooter>
@@ -206,11 +221,13 @@ const PaymentPage = () => {
             ) : (
               <Button
                 color="white"
-                onClick={onOpen}
+                onClick={()=>{onOpen()
+                postorders()}}
+
                 type="submit"
-                bg="#e6378c"
+                bg="pink.500"
                 _hover={{
-                  bg: '#e938da',
+                  bg: "pink.100",
                 }}
               >
                 Pay Now
@@ -219,7 +236,7 @@ const PaymentPage = () => {
           </Box>
         </form>
         <Box mt="30px">
-          <FormLabel p="10px" color="white" bg="#e6378c">
+          <FormLabel p="10px" color="white" bg="pink.500">
             UPI
           </FormLabel>
           <Box>
@@ -239,9 +256,9 @@ const PaymentPage = () => {
               />
               <Button
                 color="white"
-                bg="#e6378c"
+                bg="pink.500"
                 _hover={{
-                  bg: '#e938da',
+                  bg: "pink.200",
                 }}
               >
                 Pay Now
@@ -263,9 +280,9 @@ const PaymentPage = () => {
               />
               <Button
                 color="white"
-                bg="#e6378c"
+                bg="pink.500"
                 _hover={{
-                  bg: '#e938da',
+                  bg: "pink.200",
                 }}
               >
                 Pay Now
@@ -287,9 +304,9 @@ const PaymentPage = () => {
               />
               <Button
                 color="white"
-                bg="#e6378c"
+                bg="pink.500"
                 _hover={{
-                  bg: '#e938da',
+                  bg: "pink.200",
                 }}
               >
                 Pay Now

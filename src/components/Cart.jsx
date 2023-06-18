@@ -42,10 +42,7 @@ const Cart = () => {
     )
   };
   
-  const updatePaymentInfo = () => {
-    localStorage.setItem("total_bill", JSON.stringify(total))
-  }
-
+  
 useEffect(()=>{
    let updatedData = orderDataNew.map((element, index) => {
      element.quantity = quantity[element.id];
@@ -69,8 +66,7 @@ useEffect(()=>{
   }, [quantity]);
 
   const handleRemoveItem = (index) => {
-
-     const newCartItems = cartItems.filter(item => item.id !== index);
+  const newCartItems = cartItems.filter(item => item.id !== index);
   setCartItems(newCartItems);
   localStorage.setItem("cartItems", JSON.stringify(newCartItems));
  
@@ -85,7 +81,7 @@ useEffect(()=>{
         <p style={{fontSize:'25px'}}>Empty Bag!</p>
         <p style={{fontSize:'18px',marginTop:'10px'}}>Let's Explore!</p>
         <Link to={"/products"}>
-        <button style={{marginTop:'43px',color:'white',border:"1px solid purple",backgroundColor:"rgb(250, 198, 3)", width:"230px",borderRadius:'5px', padding:'10px',fontWeight:"bold",borderStyle:"none"}}>Start Shopping</button>
+        <button style={{marginTop:'43px',color:'white',border:"1px solid purple",backgroundColor:"rgb(234, 79, 162)", width:"230px",borderRadius:'5px', padding:'10px',fontWeight:"bold",borderStyle:"none"}}>Start Shopping</button>
       </Link>
       </div>
       
@@ -107,7 +103,7 @@ useEffect(()=>{
                       <Flex gridGap={3} mb={4} key={item.id}>
                 <Box flex="0 0 96px">
                   <Image
-                    src={item.picture}
+                    src={item.images}
                     alt="Product Image"
                     borderRadius="md"
                     boxShadow="sm"
@@ -116,7 +112,7 @@ useEffect(()=>{
                 </Box>
                 <Box flex="1">
                   <Text as="a" href="#" color="blue.500" fontWeight="bold" fontSize="lg">
-                    {item.name}
+                    {item.title}
                   </Text>
                   <Text color="gray.500" mt={1}>
                     {item.category}
@@ -124,7 +120,7 @@ useEffect(()=>{
                 </Box>
                 <Flex flexDirection={{ base: "row", lg: "column", xl: "row" }} alignItems="center">
                   <Box>
-                        <QuantityButton quantity={item.quantity} id={item.id} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} total={ total} />
+                        <QuantityButton quantity={item.quantity} id={item.id} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} total={total} />
                   </Box>
                   <Box>
                     <Text as="h6" fontSize="md" fontWeight="bold">

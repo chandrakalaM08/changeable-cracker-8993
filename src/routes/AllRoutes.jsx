@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "../pages/HomePage";
@@ -8,6 +9,9 @@ import SingleProductPage from "../pages/SingleProductPage";
 import PageNotFound from "../pages/PageNotFound";
 import PrivateRoute from "./PrivateRoute";
 import LoginPage from "../pages/LoginPage";
+
+import AppRoutes from "../admin/Components/AppRoutes";
+import Checkout from "../components/checkout";
 
 
 const AllRoutes = () => {
@@ -25,21 +29,21 @@ const AllRoutes = () => {
             // </PrivateRoute>
           }
         ></Route>
-        <Route
-          path="/payment"
-          element={
-            <PrivateRoute>
-              <PaymentPage />
-            </PrivateRoute>
-          }
-        ></Route>
-        
+
+        <Route path="/payment" element={
+          <PaymentPage />
+        }>
+        </Route>
 
         <Route path="/products/:id" element={<SingleProductPage />}></Route>
         <Route path="*" element={<PageNotFound />}></Route>
+ <Route path="/checkout" element={<Checkout/>}/><Route/>
+
+        {/* <Route path="/approutes" element={<AppRoutes/>}></Route> */}
       </Routes>
     </div>
   );
 };
+
 
 export default AllRoutes;
