@@ -9,7 +9,6 @@ import PageNotFound from "../pages/PageNotFound";
 import PrivateRoute from "./PrivateRoute";
 import LoginPage from "../pages/LoginPage";
 
-import AppRoutes from "../admin/Components/AppRoutes";
 
 const AllRoutes = () => {
   return (
@@ -34,10 +33,10 @@ const AllRoutes = () => {
             </PrivateRoute>
           }
         ></Route>
+        
+
         <Route path="/products/:id" element={<SingleProductPage />}></Route>
         <Route path="*" element={<PageNotFound />}></Route>
-
-        <Route path="/approutes" element={<AppRoutes/>}></Route>
       </Routes>
     </div>
   );
