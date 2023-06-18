@@ -1,5 +1,10 @@
 
 # Clothy.com (changeable-cracker-8993)
+
+### Logo 
+
+![Alt text](./src/assets/logo.jpg)
+
 This was a collaborative project executed within the span of 5 days. 
 The Website is fully responsive.
 
@@ -19,11 +24,6 @@ https://vast-red-fawn-cuff.cyclic.app/
     4. HTML
     5. CSS
     6. React-Router-Dom
-
-
-### Logo 
-
-![Alt text](./src/assets/logo.jpg)
 
 ## Features
 ### User Side
