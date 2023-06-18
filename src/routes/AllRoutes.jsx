@@ -28,11 +28,11 @@ const AllRoutes = () => {
             // </PrivateRoute>
           }
         ></Route>
-         {/* <Route path="/payment" element={
-                    // <PrivateRoute>
-                        <PaymentPage />
 
-                } > <Route/> */}
+        <Route path="/payment" element={
+          <PaymentPage />
+        }>
+        </Route>
 
         <Route path="/products/:id" element={<SingleProductPage />}></Route>
         <Route path="*" element={<PageNotFound />}></Route>
