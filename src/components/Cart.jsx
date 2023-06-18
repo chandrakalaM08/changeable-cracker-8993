@@ -66,8 +66,7 @@ useEffect(()=>{
   }, [quantity]);
 
   const handleRemoveItem = (index) => {
-
-     const newCartItems = cartItems.filter(item => item.id !== index);
+  const newCartItems = cartItems.filter(item => item.id !== index);
   setCartItems(newCartItems);
   localStorage.setItem("cartItems", JSON.stringify(newCartItems));
  
