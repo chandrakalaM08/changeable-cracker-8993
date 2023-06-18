@@ -14,7 +14,7 @@ https://vast-red-fawn-cuff.cyclic.app/
 ### Team Members:
     1. Chandrakala - Team Lead
     2. Shubham Singh - Team Member
-    3. Md. Kamran 
+    3. Md. Kamran - Team Member
 
 
 ### Tech Stack 
@@ -24,6 +24,7 @@ https://vast-red-fawn-cuff.cyclic.app/
     4. HTML
     5. CSS
     6. React-Router-Dom
+    7. Firebase
 
 ## Features
 ### User Side
@@ -37,9 +38,10 @@ https://vast-red-fawn-cuff.cyclic.app/
 
 ### Admin Side
     1. Product Page
+    2. Dashboard
 
 
-## This is how the website looks like to the user :
+## This is how the website looks to the user :
 
 ### LandingPage
 ![Landing Page]()
